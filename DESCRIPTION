@@ -2,7 +2,8 @@ Package: dmx
 Type: Package
 Title: Distributed Matrix Extras
 Version: 0.1-0
-Description: TODO
+Description: Some utilities for dealing with distributed matrices, particularly
+    those from the 'pbdDMAT' package.
 License: BSD 2-clause License + file LICENSE
 Depends:
     R (>= 3.3.0),
