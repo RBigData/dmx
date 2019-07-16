@@ -31,6 +31,38 @@ check_noncommon_dim = function(d, rank)
 
 
 
+#' stitch_ddmatrix
+#' 
+#' Stitch together a distributed matrix from the local pieces. Only works for
+#' 1-d block distributions.
+#' 
+#' @details
+#' Assumptions:
+#' \itemize{
+#'   \item every process owns some of the data
+#'   \item the data is laid out in 1-d block format
+#'   \itemize{
+#'     \item if \code{by == "column"} then all processes should have the same
+#'     number of rows, and all but perhaps the last should have the same
+#'     number of columns.
+#'     \item if \code{by == "row"} then all processes should have the same
+#'     number of columns, and all but perhaps the last should have the same
+#'     number of rows.
+#'   }
+#' }
+#' 
+#' @param x
+#' Local data matrix.
+#' @param by
+#' One of \code{"column"} or \code{"row"}. Are you stitching the data together
+#' by columns or rows?
+#' @param verify
+#' Should some checks be evaluated to (try to) make sure that the distributed
+#' matrix makes sense?
+#' 
+#' @return
+#' A ddmatrix.
+#' 
 #' @export
 stitch_ddmatrix = function(x, by="column", verify=TRUE)
 {
