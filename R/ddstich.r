@@ -75,13 +75,13 @@ stitch_ddmatrix = function(x, by="column", verify=TRUE)
   
   rank = pbdMPI::comm.rank()
   bldim = if (rank == 0) ldim else integer(2)
-  bldim = pbdMPI::spmd.allreduce.integer(bldim, integer(2))
+  bldim = spmd.allreduce.integer(bldim, integer(2))
   
   if (by == "column")
   {
     ICTXT = 1L
     nrows = ldim[1]
-    ncols = pbdMPI::spmd.allreduce.integer(ldim[2], integer(1))
+    ncols = spmd.allreduce.integer(ldim[2], integer(1))
     if (isTRUE(verify))
     {
       check_common_dim(nrows, "rows")
@@ -91,7 +91,7 @@ stitch_ddmatrix = function(x, by="column", verify=TRUE)
   else if (by == "row")
   {
     ICTXT = 2L
-    nrows = pbdMPI::spmd.allreduce.integer(ldim[1], integer(1))
+    nrows = spmd.allreduce.integer(ldim[1], integer(1))
     ncols = ldim[2]
     if (isTRUE(verify))
     {

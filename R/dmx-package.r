@@ -2,6 +2,9 @@
 #' 
 #' TODO
 #' 
+#' @importFrom methods new
+#' @importFrom pbdMPI spmd.allreduce.integer
+#' 
 #' @name dmx-package
 #' @docType package
 #' @author Drew Schmidt \email{wrathematics AT gmail.com}

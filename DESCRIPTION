@@ -8,6 +8,7 @@ Depends:
     R (>= 3.3.0),
     pbdMPI (>= 0.3-0)
 Imports:
+    methods,
     pbdBASE (>= 0.4-0)
 Enhances:
     pbdDMAT (>= 0.4-0)
