@@ -40,6 +40,11 @@ check_noncommon_dim = function(d, rank)
 #' Assumptions:
 #' \itemize{
 #'   \item every process owns some of the data
+#'   \itemize{
+#'     \item the data should be distributable on BLACS grid 1 or 2
+#'     \item some communications take place over \code{MPI_COMM_WORLD} (which
+#'     corresponds to a \code{.pbd_env$SPMD.CT$comm} value of 0).
+#'   }
 #'   \item the data is laid out in 1-d block format
 #'   \itemize{
 #'     \item if \code{by == "column"} then all processes should have the same
