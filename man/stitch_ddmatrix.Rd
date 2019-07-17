@@ -10,7 +10,8 @@ stitch_ddmatrix(x, by = "column", verify = TRUE)
 \item{x}{Local data matrix.}
 
 \item{by}{One of \code{"column"} or \code{"row"}. Are you stitching the data together
-by columns or rows?}
+by columns (i.e., is the data "naturally" distributed on BLACS context 1) or
+by rows (BLACS context 2)?}
 
 \item{verify}{Should some checks be evaluated to (try to) make sure that the distributed
 matrix makes sense?}
@@ -41,4 +42,21 @@ Assumptions:
     number of rows.
   }
 }
+}
+\examples{
+\dontrun{
+suppressMessages(library(pbdDMAT))
+suppressMessages(library(dmx))
+init.grid(quiet=TRUE)
+
+m = 4
+n = 3
+x = matrix(1:(m*n) * 10^comm.rank(), m, n)
+
+dx = stitch_ddmatrix(x)
+dx
+
+finalize()
+}
+
 }

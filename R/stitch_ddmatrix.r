@@ -60,13 +60,30 @@ check_noncommon_dim = function(d, rank)
 #' Local data matrix.
 #' @param by
 #' One of \code{"column"} or \code{"row"}. Are you stitching the data together
-#' by columns or rows?
+#' by columns (i.e., is the data "naturally" distributed on BLACS context 1) or
+#' by rows (BLACS context 2)?
 #' @param verify
 #' Should some checks be evaluated to (try to) make sure that the distributed
 #' matrix makes sense?
 #' 
 #' @return
 #' A ddmatrix.
+#' 
+#' @examples
+#' \dontrun{
+#' suppressMessages(library(pbdDMAT))
+#' suppressMessages(library(dmx))
+#' init.grid(quiet=TRUE)
+#' 
+#' m = 4
+#' n = 3
+#' x = matrix(1:(m*n) * 10^comm.rank(), m, n)
+#' 
+#' dx = stitch_ddmatrix(x)
+#' dx
+#' 
+#' finalize()
+#' }
 #' 
 #' @export
 stitch_ddmatrix = function(x, by="column", verify=TRUE)
